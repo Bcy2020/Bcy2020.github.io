@@ -41,6 +41,7 @@
   <title>闪念 | BCY.dev</title>
   
 <meta name="description" content="精益求精，止于至善">
+<meta name="keywords" content="Chronos,Agent,树形架构,软件开发">
 <link rel="canonical" href="https://bcy2020.github.io/memos/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"BCY.dev","url":"https://bcy2020.github.io","description":"精益求精，止于至善","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://bcy2020.github.io/search?q={search_term_string}"}}</script>
 <meta property="og:title" content="BCY.dev">
@@ -54,6 +55,19 @@
 <meta name="twitter:title" content="BCY.dev">
 <meta name="twitter:description" content="精益求精，止于至善">
 <meta name="twitter:image" content="/images/avatar.png">
+<meta name="twitter:site" content="@Bcy_cheya">
+<meta name="twitter:creator" content="@Bcy_cheya">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#999999">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Bcy.dev">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/icons/icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/images/icons/icon-192x192.png">
+<meta name="msapplication-TileColor" content="#999999">
+<meta name="msapplication-TileImage" content="/images/icons/icon-192x192.png">
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
 </head>
 <body class="flavor-theme">
 
@@ -181,10 +195,164 @@
   </div>
 
   
-  <div class="empty-state">
-    <p class="empty-state__text">暂无闪念</p>
-    <p class="empty-state__hint meta-text">灵感尚未降临……</p>
+
+  
+  <div class="heatmap-wrap">
+    <div id="heatmap-root"></div>
+    <div class="heatmap-footer">
+      <span id="heatmap-total"></span>
+      <div class="heatmap-legend">
+        <span>少</span>
+        <span class="heatmap-legend-cell" data-level="0"></span>
+        <span class="heatmap-legend-cell" data-level="1"></span>
+        <span class="heatmap-legend-cell" data-level="2"></span>
+        <span class="heatmap-legend-cell" data-level="3"></span>
+        <span class="heatmap-legend-cell" data-level="4"></span>
+        <span>多</span>
+      </div>
+    </div>
   </div>
+  
+
+  <div class="memo-timeline">
+    
+    <div class="memo-item" data-created="2026-06-07">
+      <div class="memo-item__marker"></div>
+      <div class="memo-item__card">
+        <div class="memo-item__content article-content">
+          <p>换了DS V4 Pro果然好啊，整个实验-MVP迁移竟然直接没出错，花了5块钱都不到</p>
+
+        </div>
+        <time class="memo-item__date meta-text">2026-06-07</time>
+      </div>
+    </div>
+    
+    <div class="memo-item" data-created="2026-06-04">
+      <div class="memo-item__marker"></div>
+      <div class="memo-item__card">
+        <div class="memo-item__content article-content">
+          <p>Codex（GPT 5.5）规划+Claude Code（Mimo 2.5Pro）实施还是太好用了，不过要维护好热缓存看板</p>
+
+        </div>
+        <time class="memo-item__date meta-text">2026-06-04</time>
+      </div>
+    </div>
+    
+    <div class="memo-item" data-created="2026-06-03">
+      <div class="memo-item__marker"></div>
+      <div class="memo-item__card">
+        <div class="memo-item__content article-content">
+          <p>最近一整子一直在做实验，mvp很久没有更新了，LLM的不确定性和固有训练轨迹确实根深蒂固</p>
+
+        </div>
+        <time class="memo-item__date meta-text">2026-06-03</time>
+      </div>
+    </div>
+    
+  </div>
+
+  
+  <script>
+    (function () {
+      var items = document.querySelectorAll('.memo-item');
+      if (!items.length) return;
+
+      var heatmapData = {};
+      items.forEach(function (item) {
+        var d = item.getAttribute('data-created');
+        if (d) {
+          var dateStr = d.substring(0, 10);
+          heatmapData[dateStr] = (heatmapData[dateStr] || 0) + 1;
+        }
+      });
+
+      var MONTHS = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
+      var DAYS = ['日', '一', '二', '三', '四', '五', '六'];
+
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
+      var endDay = today.getDay();
+      var totalDays = 52 * 7 + endDay + 1;
+      var startDate = new Date(today);
+      startDate.setDate(startDate.getDate() - totalDays + 1);
+      startDate.setDate(startDate.getDate() - startDate.getDay());
+
+      var totalWeeks = Math.ceil(totalDays / 7);
+
+      var weeks = [];
+      for (var w = 0; w < totalWeeks; w++) {
+        var week = [];
+        for (var d = 0; d < 7; d++) {
+          var cellDate = new Date(startDate);
+          cellDate.setDate(cellDate.getDate() + w * 7 + d);
+          var key = cellDate.getFullYear() + '-' + String(cellDate.getMonth() + 1).padStart(2, '0') + '-' + String(cellDate.getDate()).padStart(2, '0');
+          var count = heatmapData[key] || 0;
+          var level = count === 0 ? 0 : count === 1 ? 1 : count <= 3 ? 2 : count <= 5 ? 3 : 4;
+          var future = cellDate > today;
+          week.push({ date: cellDate, key: key, count: count, level: level, future: future, month: cellDate.getMonth() });
+        }
+        weeks.push(week);
+      }
+
+      var monthLabels = [];
+      var lastMonth = -1;
+      for (var w = 0; w < weeks.length; w++) {
+        var firstDay = weeks[w][0];
+        if (!firstDay.future && firstDay.month !== lastMonth) {
+          monthLabels.push({ weekIndex: w, label: MONTHS[firstDay.month] });
+          lastMonth = firstDay.month;
+        }
+      }
+      // 过滤 colspan 小于 2 的月份标签（避免两端出现 1 列宽的残月）
+      monthLabels = monthLabels.filter(function (m, i) {
+        var next = i + 1 < monthLabels.length ? monthLabels[i + 1].weekIndex : weeks.length;
+        return next - m.weekIndex >= 2;
+      });
+
+      var html = '<table>';
+      html += '<tr><td class="heatmap-day-label"></td>';
+      var monthColIdx = 0;
+      for (var w = 0; w < totalWeeks; w++) {
+        if (monthColIdx < monthLabels.length && monthLabels[monthColIdx].weekIndex === w) {
+          var nextIdx = monthColIdx + 1 < monthLabels.length ? monthLabels[monthColIdx + 1].weekIndex : totalWeeks;
+          var span = nextIdx - w;
+          html += '<td colspan="' + span + '" class="heatmap-month-label">' + monthLabels[monthColIdx].label + '</td>';
+          w += span - 1;
+          monthColIdx++;
+        } else {
+          html += '<td class="heatmap-month-label"></td>';
+        }
+      }
+      html += '</tr>';
+
+      for (var d = 0; d < 7; d++) {
+        html += '<tr>';
+        html += '<td class="heatmap-day-label">' + DAYS[d] + '</td>';
+        for (var w = 0; w < weeks.length; w++) {
+          var c = weeks[w][d];
+          if (c.future) {
+            html += '<td class="cell" data-level="0"></td>';
+          } else {
+            html += '<td class="cell" data-level="' + c.level + '" title="' + c.key + '：' + c.count + ' 条闪念"></td>';
+          }
+        }
+        html += '</tr>';
+      }
+      html += '</table>';
+
+      var root = document.getElementById('heatmap-root');
+      if (root) root.innerHTML = html;
+      var totalEl = document.getElementById('heatmap-total');
+      if (totalEl) totalEl.textContent = '过去一年共 ' + items.length + ' 条闪念';
+
+      setTimeout(function () {
+        var wrap = document.querySelector('.heatmap-wrap');
+        if (wrap) wrap.scrollLeft = wrap.scrollWidth;
+      }, 100);
+    })();
+  </script>
+  
+
   
 </div>
 
@@ -232,7 +400,7 @@
     
     
     <div class="footer-custom">
-      <i>为了更好的明天</i>
+      <p id="my_footer">为了更好的明天</p>
     </div>
     
 
@@ -272,6 +440,10 @@
 
   
 
+  
+  <style>h2.section-title{
+	margin:15px 0 0 0
+}</style>
   
 
   
