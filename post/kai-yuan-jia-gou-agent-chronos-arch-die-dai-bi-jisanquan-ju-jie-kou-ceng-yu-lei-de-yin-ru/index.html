@@ -38,23 +38,30 @@
   })();
 </script>
   <meta name="generator" content="Gridea Pro 1.2.2">
-  <title>#架构 | BCY.dev</title>
+  <title>开源架构 Agent Chronos Arch 迭代笔记（三）：全局接口层与类的引入 | BCY.dev</title>
   
-<meta name="description" content="精益求精，止于至善">
+<meta property="og:title" content="开源架构 Agent Chronos Arch 迭代笔记（三）：全局接口层与类的引入" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru.jpg" />
+
+
+<meta name="description" content="仓库地址：repo 0. 什么是这次升级的核心 MVP 0.4 的关键升级是：在 JSON PRD 与树分解之间增加一层全局接口层。目标很明确：统一全局状态操作口径，切断叶子节点无约束直接改状态的路径。 1. 原问题：状态操作语义分裂 在 MVP 0.3.x 中&amp;hellip;">
 <meta name="keywords" content="Chronos,Agent,树形架构,软件开发">
-<link rel="canonical" href="https://bcy2020.github.io/tag/jia-gou/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"BCY.dev","url":"https://bcy2020.github.io","description":"精益求精，止于至善","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://bcy2020.github.io/search?q={search_term_string}"}}</script>
-<meta property="og:title" content="BCY.dev">
-<meta property="og:description" content="精益求精，止于至善">
-<meta property="og:url" content="https://bcy2020.github.io/tag/jia-gou/">
-<meta property="og:type" content="website">
+<link rel="canonical" href="https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"开源架构 Agent Chronos Arch 迭代笔记（三）：全局接口层与类的引入","url":"https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru/","description":"仓库地址：repo 0. 什么是这次升级的核心 MVP 0.4 的关键升级是：在 JSON PRD 与树分解之间增加一层全局接口层。目标很明确：统一全局状态操作口径，切断叶子节点无约束直接改状态的路径。 1. 原问题：状态操作语义分裂 在 MVP 0.3.x 中\u0026hellip;","image":"/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru.jpg","datePublished":"2026-06-07T23:53:58Z","dateModified":"2026-06-07T23:53:58Z","author":{"@type":"Person","name":"BCY.dev"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"BCY.dev"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://bcy2020.github.io","name":"BCY.dev","position":1},{"@type":"ListItem","item":"https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru/","name":"开源架构 Agent Chronos Arch 迭代笔记（三）：全局接口层与类的引入","position":2}]}</script>
+<meta property="og:title" content="开源架构 Agent Chronos Arch 迭代笔记（三）：全局接口层与类的引入">
+<meta property="og:description" content="仓库地址：repo 0. 什么是这次升级的核心 MVP 0.4 的关键升级是：在 JSON PRD 与树分解之间增加一层全局接口层。目标很明确：统一全局状态操作口径，切断叶子节点无约束直接改状态的路径。 1. 原问题：状态操作语义分裂 在 MVP 0.3.x 中&amp;hellip;">
+<meta property="og:url" content="https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru/">
+<meta property="og:type" content="article">
 <meta property="og:site_name" content="BCY.dev">
-<meta property="og:image" content="/images/avatar.png">
+<meta property="og:image" content="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://bcy2020.github.io/tag/jia-gou/">
-<meta name="twitter:title" content="BCY.dev">
-<meta name="twitter:description" content="精益求精，止于至善">
-<meta name="twitter:image" content="/images/avatar.png">
+<meta name="twitter:url" content="https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru/">
+<meta name="twitter:title" content="开源架构 Agent Chronos Arch 迭代笔记（三）：全局接口层与类的引入">
+<meta name="twitter:description" content="仓库地址：repo 0. 什么是这次升级的核心 MVP 0.4 的关键升级是：在 JSON PRD 与树分解之间增加一层全局接口层。目标很明确：统一全局状态操作口径，切断叶子节点无约束直接改状态的路径。 1. 原问题：状态操作语义分裂 在 MVP 0.3.x 中&amp;hellip;">
+<meta name="twitter:image" content="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru.jpg">
 <meta name="twitter:site" content="@Bcy_cheya">
 <meta name="twitter:creator" content="@Bcy_cheya">
 <link rel="manifest" href="/manifest.json">
@@ -188,101 +195,113 @@
 
   <main class="site-main" role="main">
     
-<div class="container">
-  <div class="page-header">
-    <a href="/tags" class="page-back meta-text">&larr; 所有标签</a>
-    <h1 class="page-title"><span class="page-title__hash">#</span>架构</h1>
-    
-    <p class="page-subtitle meta-text">共 3 篇文章</p>
-    
-  </div>
-
-  
-  <div class="post-list">
-    
-    <article class="post-card post-card--list">
-  <div class="post-card__body">
-    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru/" class="post-card__title-link">
-      <h3 class="post-card__title clamp-3">开源架构 Agent Chronos Arch 迭代笔记（三）：全局接口层与类的引入</h3>
-    </a>
-    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru/" class="post-card__excerpt clamp-2">
-      仓库地址：repo
-0. 什么是这次升级的核心
-MVP 0.4 的关键升级是：在 JSON PRD 与树分解之间增加一层全局接口层。目标很明确：统一全局状态操作口径，切断叶子节点无约束直接改状态的路径。
-1. 原问题：状态操作语义分裂...
-    </a>
-    <div class="post-card__meta meta-text">
-      2026-06-07
+<article class="article-container">
+  <header class="article-header">
+    <h1 class="article-title">开源架构 Agent Chronos Arch 迭代笔记（三）：全局接口层与类的引入</h1>
+    <div class="article-meta">
+      
+      
+      <a href="/category/chronos/" class="article-meta__category">Chronos</a>
+      
+      
+      <span class="article-meta__sep">·</span>
+      
+      <span class="article-meta__item">2026-06-07</span>
+      
+      <span class="article-meta__sep">·</span>
+      <span class="article-meta__item">1 分钟阅读</span>
       
     </div>
-  </div>
-  
-  <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru/" class="post-card__thumb-link">
-    <img class="post-card__thumb" src="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru.jpg" alt="开源架构 Agent Chronos Arch 迭代笔记（三）：全局接口层与类的引入" loading="lazy" />
-  </a>
-  
-</article>
-
     
-    <article class="post-card post-card--list">
-  <div class="post-card__body">
-    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd/" class="post-card__title-link">
-      <h3 class="post-card__title clamp-3">开源架构 Agent Chronos Arch 迭代笔记（二）：JSON PRD 与 subPRD</h3>
-    </a>
-    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd/" class="post-card__excerpt clamp-2">
-      仓库地址：repo
-0. 本文要解决的核心断点
-旧版 MVP 的根节点上下文构建方式非常脆弱：只截取 PRD 前若干行文本。其后果是：
-
-业务规则和验收条件大量丢失
-根节点职责边界模糊
-信息失真沿分解树逐层放大
-
-因此，这次迭代聚焦“...
-    </a>
-    <div class="post-card__meta meta-text">
-      2026-06-07
+    <div class="article-header__tags">
+      
+      <a href="/tag/agent-chronos-arch/" class="tag-pill tag-pill--sm">Agent Chronos Arch</a>
+      
+      <a href="/tag/agent-harness/" class="tag-pill tag-pill--sm">Agent Harness</a>
+      
+      <a href="/tag/kai-yuan/" class="tag-pill tag-pill--sm">开源</a>
+      
+      <a href="/tag/jia-gou/" class="tag-pill tag-pill--sm">架构</a>
       
     </div>
+    
+  </header>
+
+  
+  <div class="article-feature">
+    <img src="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru.jpg" alt="开源架构 Agent Chronos Arch 迭代笔记（三）：全局接口层与类的引入" />
   </div>
   
-  <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd/" class="post-card__thumb-link">
-    <img class="post-card__thumb" src="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd.jpeg" alt="开源架构 Agent Chronos Arch 迭代笔记（二）：JSON PRD 与 subPRD" loading="lazy" />
-  </a>
+
+  <div class="article-content">
+    <p>仓库地址：<a href="https://github.com/Bcy2020/agent-chronos-arch">repo</a></p>
+<h2 id="0-">0. 什么是这次升级的核心</h2>
+<p>MVP 0.4 的关键升级是：在 <code>JSON PRD</code> 与树分解之间增加一层全局接口层。目标很明确：统一全局状态操作口径，切断叶子节点无约束直接改状态的路径。</p>
+<h2 id="1-">1. 原问题：状态操作语义分裂</h2>
+<p>在 MVP 0.3.x 中，叶子节点虽然声明了状态操作，但运行时仍出现两类严重问题：</p>
+<ul>
+<li>不同节点对同一数据源结构理解不一致</li>
+<li>节点通过 <code>global</code> 直接修改状态，入口分散且不可治理</li>
+</ul>
+<p>这会在代码拼接后触发运行时冲突，破坏树结构边界。</p>
+<h2 id="2-">2. 方案：全局接口层前置治理</h2>
+<p>全局接口层在树分解前完成三件事：</p>
+<ol>
+<li>全局数据源技术选型与结构定型</li>
+<li>统一读写接口定义与固化</li>
+<li>将授权接口按需下发给叶子节点</li>
+</ol>
+<p>同时在验证阶段增加规则：出现 <code>global</code> 直接拒绝，强制重生成为接口调用式实现。</p>
+<p><img src="/post-images/1780847720800502900_0.png" alt="全局接口层" /></p>
+<h2 id="3-">3. 三个关键收益</h2>
+<h3 id="31-">3.1 状态治理口径统一</h3>
+<p>所有叶子节点只能走统一接口，避免同源多义和硬编码分叉。</p>
+<h3 id="32--api-">3.2 外部 API 治理纳入同一抽象</h3>
+<p>外部 API 可以等价抽象为“远程数据源”，同样纳入统一接口与授权治理。</p>
+<p><img src="/post-images/1780847735440112300_0.png" alt="API 抽象为数据源" /></p>
+<h3 id="33-">3.3 类与领域模型开始落地</h3>
+<p>引入接口层后，状态承载可以更自然地和类模型结合，领域概念不再只能停留在函数拼装层。</p>
+<p><img src="/post-images/1780847745040363100_0.png" alt="类与状态融合" /></p>
+<h2 id="4-">4. 仍待解决的问题</h2>
+<ul>
+<li>当前接口类型偏基础，复杂业务能力不足</li>
+<li>分解中后期新发现需求可能冲击前置定型结构</li>
+</ul>
+<p>后续方向是：在统一治理前提下，让接口能力从分解过程自然生长，而不是一次性静态写死。</p>
+
+  </div>
+
   
-</article>
-
+  <nav class="post-nav">
     
-    <article class="post-card post-card--list">
-  <div class="post-card__body">
-    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin/" class="post-card__title-link">
-      <h3 class="post-card__title clamp-3">开源架构 Agent Chronos Arch 迭代笔记（一）：从流程中心到树中心</h3>
-    </a>
-    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin/" class="post-card__excerpt clamp-2">
-      天依镇楼~~
-仓库地址：repo
-0. 这次迭代在解决什么
-Agent Chronos Arch 早期版本强调流程治理，这在工程纪律上有效，但在持续迭代中暴露出三个明显问题：
-
-流程链路偏重，局部改动成本高
-前置阶段约束太硬，变更吸收...
-    </a>
-    <div class="post-card__meta meta-text">
-      2026-06-07
-      
+    <div class="post-nav-card post-nav-card--empty">
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">上一篇</span>
+        <span class="post-nav-card__empty-text">没有上一篇了~</span>
+      </div>
     </div>
-  </div>
-  
-  <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin/" class="post-card__thumb-link">
-    <img class="post-card__thumb" src="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin.jpg" alt="开源架构 Agent Chronos Arch 迭代笔记（一）：从流程中心到树中心" loading="lazy" />
-  </a>
-  
-</article>
-
     
-  </div>
+    
+    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd/" class="post-nav-card post-nav-card--next">
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">下一篇</span>
+        <span class="post-nav-card__title">开源架构 Agent Chronos Arch 迭代笔记（二）：JSON PRD 与 subPRD</span>
+      </div>
+      
+      <div class="post-nav-card__img">
+        <img src="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd.jpeg" alt="开源架构 Agent Chronos Arch 迭代笔记（二）：JSON PRD 与 subPRD" loading="lazy" />
+      </div>
+      
+      <span class="post-nav-card__arrow">&rarr;</span>
+    </a>
+    
+  </nav>
+
   
-</div>
+  
+
+
+</article>
 
   </main>
 

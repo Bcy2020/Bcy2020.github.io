@@ -38,23 +38,30 @@
   })();
 </script>
   <meta name="generator" content="Gridea Pro 1.2.2">
-  <title>#架构 | BCY.dev</title>
+  <title>开源架构 Agent Chronos Arch 迭代笔记（二）：JSON PRD 与 subPRD | BCY.dev</title>
   
-<meta name="description" content="精益求精，止于至善">
+<meta property="og:title" content="开源架构 Agent Chronos Arch 迭代笔记（二）：JSON PRD 与 subPRD" />
+<meta property="og:type" content="article" />
+
+<meta property="og:image" content="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd.jpeg" />
+
+
+<meta name="description" content="仓库地址：repo 0. 本文要解决的核心断点 旧版 MVP 的根节点上下文构建方式非常脆弱：只截取 PRD 前若干行文本。其后果是： 业务规则和验收条件大量丢失 根节点职责边界模糊 信息失真沿分解树逐层放大 因此，这次迭代聚焦“信息无损传递链”的建立&amp;hellip;">
 <meta name="keywords" content="Chronos,Agent,树形架构,软件开发">
-<link rel="canonical" href="https://bcy2020.github.io/tag/jia-gou/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"BCY.dev","url":"https://bcy2020.github.io","description":"精益求精，止于至善","potentialAction":{"@type":"SearchAction","query-input":"required name=search_term_string","target":"https://bcy2020.github.io/search?q={search_term_string}"}}</script>
-<meta property="og:title" content="BCY.dev">
-<meta property="og:description" content="精益求精，止于至善">
-<meta property="og:url" content="https://bcy2020.github.io/tag/jia-gou/">
-<meta property="og:type" content="website">
+<link rel="canonical" href="https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"开源架构 Agent Chronos Arch 迭代笔记（二）：JSON PRD 与 subPRD","url":"https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd/","description":"仓库地址：repo 0. 本文要解决的核心断点 旧版 MVP 的根节点上下文构建方式非常脆弱：只截取 PRD 前若干行文本。其后果是： 业务规则和验收条件大量丢失 根节点职责边界模糊 信息失真沿分解树逐层放大 因此，这次迭代聚焦“信息无损传递链”的建立\u0026hellip;","image":"/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd.jpeg","datePublished":"2026-06-07T23:50:46Z","dateModified":"2026-06-07T23:50:46Z","author":{"@type":"Person","name":"BCY.dev"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"BCY.dev"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://bcy2020.github.io","name":"BCY.dev","position":1},{"@type":"ListItem","item":"https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd/","name":"开源架构 Agent Chronos Arch 迭代笔记（二）：JSON PRD 与 subPRD","position":2}]}</script>
+<meta property="og:title" content="开源架构 Agent Chronos Arch 迭代笔记（二）：JSON PRD 与 subPRD">
+<meta property="og:description" content="仓库地址：repo 0. 本文要解决的核心断点 旧版 MVP 的根节点上下文构建方式非常脆弱：只截取 PRD 前若干行文本。其后果是： 业务规则和验收条件大量丢失 根节点职责边界模糊 信息失真沿分解树逐层放大 因此，这次迭代聚焦“信息无损传递链”的建立&amp;hellip;">
+<meta property="og:url" content="https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd/">
+<meta property="og:type" content="article">
 <meta property="og:site_name" content="BCY.dev">
-<meta property="og:image" content="/images/avatar.png">
+<meta property="og:image" content="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd.jpeg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://bcy2020.github.io/tag/jia-gou/">
-<meta name="twitter:title" content="BCY.dev">
-<meta name="twitter:description" content="精益求精，止于至善">
-<meta name="twitter:image" content="/images/avatar.png">
+<meta name="twitter:url" content="https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd/">
+<meta name="twitter:title" content="开源架构 Agent Chronos Arch 迭代笔记（二）：JSON PRD 与 subPRD">
+<meta name="twitter:description" content="仓库地址：repo 0. 本文要解决的核心断点 旧版 MVP 的根节点上下文构建方式非常脆弱：只截取 PRD 前若干行文本。其后果是： 业务规则和验收条件大量丢失 根节点职责边界模糊 信息失真沿分解树逐层放大 因此，这次迭代聚焦“信息无损传递链”的建立&amp;hellip;">
+<meta name="twitter:image" content="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd.jpeg">
 <meta name="twitter:site" content="@Bcy_cheya">
 <meta name="twitter:creator" content="@Bcy_cheya">
 <link rel="manifest" href="/manifest.json">
@@ -188,101 +195,142 @@
 
   <main class="site-main" role="main">
     
-<div class="container">
-  <div class="page-header">
-    <a href="/tags" class="page-back meta-text">&larr; 所有标签</a>
-    <h1 class="page-title"><span class="page-title__hash">#</span>架构</h1>
-    
-    <p class="page-subtitle meta-text">共 3 篇文章</p>
-    
-  </div>
-
-  
-  <div class="post-list">
-    
-    <article class="post-card post-card--list">
-  <div class="post-card__body">
-    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru/" class="post-card__title-link">
-      <h3 class="post-card__title clamp-3">开源架构 Agent Chronos Arch 迭代笔记（三）：全局接口层与类的引入</h3>
-    </a>
-    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru/" class="post-card__excerpt clamp-2">
-      仓库地址：repo
-0. 什么是这次升级的核心
-MVP 0.4 的关键升级是：在 JSON PRD 与树分解之间增加一层全局接口层。目标很明确：统一全局状态操作口径，切断叶子节点无约束直接改状态的路径。
-1. 原问题：状态操作语义分裂...
-    </a>
-    <div class="post-card__meta meta-text">
-      2026-06-07
+<article class="article-container">
+  <header class="article-header">
+    <h1 class="article-title">开源架构 Agent Chronos Arch 迭代笔记（二）：JSON PRD 与 subPRD</h1>
+    <div class="article-meta">
+      
+      
+      <a href="/category/chronos/" class="article-meta__category">Chronos</a>
+      
+      
+      <span class="article-meta__sep">·</span>
+      
+      <span class="article-meta__item">2026-06-07</span>
+      
+      <span class="article-meta__sep">·</span>
+      <span class="article-meta__item">2 分钟阅读</span>
       
     </div>
-  </div>
-  
-  <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru/" class="post-card__thumb-link">
-    <img class="post-card__thumb" src="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru.jpg" alt="开源架构 Agent Chronos Arch 迭代笔记（三）：全局接口层与类的引入" loading="lazy" />
-  </a>
-  
-</article>
-
     
-    <article class="post-card post-card--list">
-  <div class="post-card__body">
-    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd/" class="post-card__title-link">
-      <h3 class="post-card__title clamp-3">开源架构 Agent Chronos Arch 迭代笔记（二）：JSON PRD 与 subPRD</h3>
-    </a>
-    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd/" class="post-card__excerpt clamp-2">
-      仓库地址：repo
-0. 本文要解决的核心断点
-旧版 MVP 的根节点上下文构建方式非常脆弱：只截取 PRD 前若干行文本。其后果是：
-
-业务规则和验收条件大量丢失
-根节点职责边界模糊
-信息失真沿分解树逐层放大
-
-因此，这次迭代聚焦“...
-    </a>
-    <div class="post-card__meta meta-text">
-      2026-06-07
+    <div class="article-header__tags">
+      
+      <a href="/tag/agent-chronos-arch/" class="tag-pill tag-pill--sm">Agent Chronos Arch</a>
+      
+      <a href="/tag/agent-harness/" class="tag-pill tag-pill--sm">Agent Harness</a>
+      
+      <a href="/tag/kai-yuan/" class="tag-pill tag-pill--sm">开源</a>
+      
+      <a href="/tag/jia-gou/" class="tag-pill tag-pill--sm">架构</a>
       
     </div>
+    
+  </header>
+
+  
+  <div class="article-feature">
+    <img src="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd.jpeg" alt="开源架构 Agent Chronos Arch 迭代笔记（二）：JSON PRD 与 subPRD" />
   </div>
   
-  <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd/" class="post-card__thumb-link">
-    <img class="post-card__thumb" src="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jierjson-prd-yu-subprd.jpeg" alt="开源架构 Agent Chronos Arch 迭代笔记（二）：JSON PRD 与 subPRD" loading="lazy" />
-  </a>
+
+  <div class="article-content">
+    <p>仓库地址：<a href="https://github.com/Bcy2020/agent-chronos-arch">repo</a></p>
+<h2 id="0-">0. 本文要解决的核心断点</h2>
+<p>旧版 MVP 的根节点上下文构建方式非常脆弱：只截取 PRD 前若干行文本。其后果是：</p>
+<ul>
+<li>业务规则和验收条件大量丢失</li>
+<li>根节点职责边界模糊</li>
+<li>信息失真沿分解树逐层放大</li>
+</ul>
+<p>因此，这次迭代聚焦“信息无损传递链”的建立。</p>
+<h2 id="1-json-prd-">1. 关键设计一：JSON PRD 注入根节点</h2>
+<p>在初始化阶段先把自然语言 PRD 转为结构化 <code>JsonPRD</code>，再由 <code>create_root_from_prd</code> 构建根节点。</p>
+<p>它至少覆盖：</p>
+<ul>
+<li>功能需求与非功能需求</li>
+<li>验收标准与技术约束</li>
+<li>全局数据源、初始状态与 schema</li>
+<li>输入输出格式规格</li>
+</ul>
+<p>根节点不再是摘要片段，而是带约束与状态语义的可执行蓝图。</p>
+<p><img src="/post-images/1780847501754342200_0.png" alt="PRD 到根节点" /></p>
+<h2 id="2-subprd-">2. 关键设计二：subPRD 做父子信息桥接</h2>
+<p>只解决根节点还不够，父子节点之间也需要结构化传递。为此引入了比完整 PRD 更轻量的 <code>subPRD</code>：</p>
+<ul>
+<li>保留功能描述与边界</li>
+<li>保留输入输出规格</li>
+<li>保留数据源操作约束</li>
+<li>控制信息密度，避免上下文过载</li>
+</ul>
+<p><img src="/post-images/1780847517265593300_0.png" alt="父子信息传递" /></p>
+<h2 id="3-childcontract-">3. 关键设计三：ChildContract 固化接口契约</h2>
+<p>分解阶段直接产出并固化 <code>ChildContract</code>，核心字段包括：</p>
+<ul>
+<li>purpose / behavior</li>
+<li>signature（不可随意漂移）</li>
+<li>inputs / outputs</li>
+<li>preconditions / postconditions</li>
+<li>data_operations</li>
+</ul>
+<p>在 codegen 阶段，父节点签名与子节点契约同时进入提示词，减少接口漂移空间。</p>
+<p><img src="/post-images/1780847530222605200_0.png" alt="契约锁定" /></p>
+<h2 id="4-">4. 已观察到的收益</h2>
+<p>结合当前测试输出，主要收益体现在四点：</p>
+<ul>
+<li>需求覆盖完整度提升</li>
+<li>节点层次与边界更清晰</li>
+<li>接口一致性有了前置约束</li>
+<li>信息传递从“脑补”变为“结构化对齐”</li>
+</ul>
+<h2 id="5-">5. 仍需补强的部分</h2>
+<p>当前版本依然有工程性短板：</p>
+<ul>
+<li><code>global_vars</code> 声明与代码实现仍有错位</li>
+<li>个别必填业务字段会在链路中丢失</li>
+<li>契约验证仍偏浅层，闭环不完整</li>
+<li>跨函数返回值类型一致性仍需加强</li>
+</ul>
+<p>下一步会继续沿“结构化输入 + 契约校验”方向推进到更强的自动化验证层。</p>
+
+  </div>
+
   
-</article>
-
+  <nav class="post-nav">
     
-    <article class="post-card post-card--list">
-  <div class="post-card__body">
-    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin/" class="post-card__title-link">
-      <h3 class="post-card__title clamp-3">开源架构 Agent Chronos Arch 迭代笔记（一）：从流程中心到树中心</h3>
-    </a>
-    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin/" class="post-card__excerpt clamp-2">
-      天依镇楼~~
-仓库地址：repo
-0. 这次迭代在解决什么
-Agent Chronos Arch 早期版本强调流程治理，这在工程纪律上有效，但在持续迭代中暴露出三个明显问题：
-
-流程链路偏重，局部改动成本高
-前置阶段约束太硬，变更吸收...
-    </a>
-    <div class="post-card__meta meta-text">
-      2026-06-07
+    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru/" class="post-nav-card post-nav-card--prev">
       
-    </div>
-  </div>
-  
-  <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin/" class="post-card__thumb-link">
-    <img class="post-card__thumb" src="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin.jpg" alt="开源架构 Agent Chronos Arch 迭代笔记（一）：从流程中心到树中心" loading="lazy" />
-  </a>
-  
-</article>
-
+      <div class="post-nav-card__img">
+        <img src="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru.jpg" alt="开源架构 Agent Chronos Arch 迭代笔记（三）：全局接口层与类的引入" loading="lazy" />
+      </div>
+      
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">上一篇</span>
+        <span class="post-nav-card__title">开源架构 Agent Chronos Arch 迭代笔记（三）：全局接口层与类的引入</span>
+      </div>
+      <span class="post-nav-card__arrow">&larr;</span>
+    </a>
     
-  </div>
+    
+    <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin/" class="post-nav-card post-nav-card--next">
+      <div class="post-nav-card__body">
+        <span class="post-nav-card__label meta-text">下一篇</span>
+        <span class="post-nav-card__title">开源架构 Agent Chronos Arch 迭代笔记（一）：从流程中心到树中心</span>
+      </div>
+      
+      <div class="post-nav-card__img">
+        <img src="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin.jpg" alt="开源架构 Agent Chronos Arch 迭代笔记（一）：从流程中心到树中心" loading="lazy" />
+      </div>
+      
+      <span class="post-nav-card__arrow">&rarr;</span>
+    </a>
+    
+  </nav>
+
   
-</div>
+  
+
+
+</article>
 
   </main>
 
