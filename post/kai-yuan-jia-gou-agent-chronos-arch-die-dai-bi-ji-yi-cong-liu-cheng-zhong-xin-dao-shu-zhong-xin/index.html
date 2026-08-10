@@ -43,25 +43,25 @@
 <meta property="og:title" content="开源架构 Agent Chronos Arch 迭代笔记（一）：从流程中心到树中心" />
 <meta property="og:type" content="article" />
 
-<meta property="og:image" content="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin.jpg" />
+<meta property="og:image" content="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin.webp" />
 
 
 <meta name="description" content="天依镇楼~~ 仓库地址：repo 0. 这次迭代在解决什么 Agent Chronos Arch 早期版本强调流程治理，这在工程纪律上有效，但在持续迭代中暴露出三个明显问题： 流程链路偏重，局部改动成本高 前置阶段约束太硬，变更吸收能力不足 分解树在落地时&amp;hellip;">
 <meta name="keywords" content="Chronos,Agent,树形架构,软件开发">
 <link rel="canonical" href="https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"开源架构 Agent Chronos Arch 迭代笔记（一）：从流程中心到树中心","url":"https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin/","description":"天依镇楼~~ 仓库地址：repo 0. 这次迭代在解决什么 Agent Chronos Arch 早期版本强调流程治理，这在工程纪律上有效，但在持续迭代中暴露出三个明显问题： 流程链路偏重，局部改动成本高 前置阶段约束太硬，变更吸收能力不足 分解树在落地时\u0026hellip;","image":"/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin.jpg","datePublished":"2026-06-07T12:40:45+08:00","dateModified":"2026-06-10T22:14:35+08:00","author":{"@type":"Person","name":"BCY.dev"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"BCY.dev"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"开源架构 Agent Chronos Arch 迭代笔记（一）：从流程中心到树中心","url":"https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin/","description":"天依镇楼~~ 仓库地址：repo 0. 这次迭代在解决什么 Agent Chronos Arch 早期版本强调流程治理，这在工程纪律上有效，但在持续迭代中暴露出三个明显问题： 流程链路偏重，局部改动成本高 前置阶段约束太硬，变更吸收能力不足 分解树在落地时\u0026hellip;","image":"/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin.webp","datePublished":"2026-06-07T12:40:45-04:00","dateModified":"2026-06-13T18:52:55-04:00","author":{"@type":"Person","name":"BCY.dev"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"BCY.dev"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://bcy2020.github.io","name":"BCY.dev","position":1},{"@type":"ListItem","item":"https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin/","name":"开源架构 Agent Chronos Arch 迭代笔记（一）：从流程中心到树中心","position":2}]}</script>
 <meta property="og:title" content="开源架构 Agent Chronos Arch 迭代笔记（一）：从流程中心到树中心">
 <meta property="og:description" content="天依镇楼~~ 仓库地址：repo 0. 这次迭代在解决什么 Agent Chronos Arch 早期版本强调流程治理，这在工程纪律上有效，但在持续迭代中暴露出三个明显问题： 流程链路偏重，局部改动成本高 前置阶段约束太硬，变更吸收能力不足 分解树在落地时&amp;hellip;">
 <meta property="og:url" content="https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="BCY.dev">
-<meta property="og:image" content="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin.jpg">
+<meta property="og:image" content="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin.webp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://bcy2020.github.io/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin/">
 <meta name="twitter:title" content="开源架构 Agent Chronos Arch 迭代笔记（一）：从流程中心到树中心">
 <meta name="twitter:description" content="天依镇楼~~ 仓库地址：repo 0. 这次迭代在解决什么 Agent Chronos Arch 早期版本强调流程治理，这在工程纪律上有效，但在持续迭代中暴露出三个明显问题： 流程链路偏重，局部改动成本高 前置阶段约束太硬，变更吸收能力不足 分解树在落地时&amp;hellip;">
-<meta name="twitter:image" content="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin.jpg">
+<meta name="twitter:image" content="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin.webp">
 <meta name="twitter:site" content="@Bcy_cheya">
 <meta name="twitter:creator" content="@Bcy_cheya">
 <link rel="manifest" href="/manifest.json">
@@ -223,7 +223,7 @@
 
   
   <div class="article-feature">
-    <img src="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin.jpg" alt="开源架构 Agent Chronos Arch 迭代笔记（一）：从流程中心到树中心" />
+    <img src="/post-images/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-ji-yi-cong-liu-cheng-zhong-xin-dao-shu-zhong-xin.webp" alt="开源架构 Agent Chronos Arch 迭代笔记（一）：从流程中心到树中心" />
   </div>
   
 
@@ -238,7 +238,7 @@
 <li>分解树在落地时出现接口不守恒、覆盖不闭合</li>
 </ul>
 <p>这次迭代的核心目标，是把主轴从“阶段推进”切换到“树上闭环”：分解之后立即做代码级组合验证，用验证结果反向塑形分解。</p>
-<p><img src="https://Bcy2020.github.io/post-images/1780807358367.png" alt="树上闭环" /></p>
+<p><img src="/post-images/1781345849267234600_0.png" alt="树上闭环" /></p>
 <h2 id="1-">1. 核心改动：把实现和验证前移到分解阶段</h2>
 <p>新方案不再是“先完整分解、再集中开发、最后统一验收”，而是采用更紧的节点级闭环：</p>
 <ol>
