@@ -49,7 +49,7 @@
 <meta name="description" content="在一切开始之前，我们应当先强调，深度学习这个领域至今仍然没有太多的可解释性。了解神经网络的人都应当知道，我们在网络结构上所做的创新，大多是因为在某种启发性的思想下对网络的结构进行一些改变，剩下的全部交给梯度下降。这样改变出来的结构，它可能会训练得更好，也有可能更差。如果更好，我们往往会尝试使用之前对其进行改造时所受的启发，对其进行解释。但一个网络经过改进以后变得更好，其真实原因是否真的就是我们&amp;hellip;">
 <meta name="keywords" content="Chronos,Agent,树形架构,软件开发">
 <link rel="canonical" href="https://bcy2020.github.io/post/congwei-shi-meli-jie-zhu-yi-li-ji-zhicong-zhi-jueqkv-dao-gong-cheng-xian-shi/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从“为什么”理解注意力机制：从直觉、QKV 到工程现实","url":"https://bcy2020.github.io/post/congwei-shi-meli-jie-zhu-yi-li-ji-zhicong-zhi-jueqkv-dao-gong-cheng-xian-shi/","description":"在一切开始之前，我们应当先强调，深度学习这个领域至今仍然没有太多的可解释性。了解神经网络的人都应当知道，我们在网络结构上所做的创新，大多是因为在某种启发性的思想下对网络的结构进行一些改变，剩下的全部交给梯度下降。这样改变出来的结构，它可能会训练得更好，也有可能更差。如果更好，我们往往会尝试使用之前对其进行改造时所受的启发，对其进行解释。但一个网络经过改进以后变得更好，其真实原因是否真的就是我们\u0026hellip;","image":"/post-images/congwei-shi-meli-jie-zhu-yi-li-ji-zhicong-zhi-jueqkv-dao-gong-cheng-xian-shi.jpg","datePublished":"2026-08-10T11:12:52Z","dateModified":"2026-08-10T11:12:52Z","author":{"@type":"Person","name":"BCY.dev"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"BCY.dev"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"从“为什么”理解注意力机制：从直觉、QKV 到工程现实","url":"https://bcy2020.github.io/post/congwei-shi-meli-jie-zhu-yi-li-ji-zhicong-zhi-jueqkv-dao-gong-cheng-xian-shi/","description":"在一切开始之前，我们应当先强调，深度学习这个领域至今仍然没有太多的可解释性。了解神经网络的人都应当知道，我们在网络结构上所做的创新，大多是因为在某种启发性的思想下对网络的结构进行一些改变，剩下的全部交给梯度下降。这样改变出来的结构，它可能会训练得更好，也有可能更差。如果更好，我们往往会尝试使用之前对其进行改造时所受的启发，对其进行解释。但一个网络经过改进以后变得更好，其真实原因是否真的就是我们\u0026hellip;","image":"/post-images/congwei-shi-meli-jie-zhu-yi-li-ji-zhicong-zhi-jueqkv-dao-gong-cheng-xian-shi.jpg","datePublished":"2026-08-10T11:12:52-04:00","dateModified":"2026-08-10T11:12:52-04:00","author":{"@type":"Person","name":"BCY.dev"},"publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"/images/avatar.png"},"name":"BCY.dev"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","item":"https://bcy2020.github.io","name":"BCY.dev","position":1},{"@type":"ListItem","item":"https://bcy2020.github.io/post/congwei-shi-meli-jie-zhu-yi-li-ji-zhicong-zhi-jueqkv-dao-gong-cheng-xian-shi/","name":"从“为什么”理解注意力机制：从直觉、QKV 到工程现实","position":2}]}</script>
 <meta property="og:title" content="从“为什么”理解注意力机制：从直觉、QKV 到工程现实">
 <meta property="og:description" content="在一切开始之前，我们应当先强调，深度学习这个领域至今仍然没有太多的可解释性。了解神经网络的人都应当知道，我们在网络结构上所做的创新，大多是因为在某种启发性的思想下对网络的结构进行一些改变，剩下的全部交给梯度下降。这样改变出来的结构，它可能会训练得更好，也有可能更差。如果更好，我们往往会尝试使用之前对其进行改造时所受的启发，对其进行解释。但一个网络经过改进以后变得更好，其真实原因是否真的就是我们&amp;hellip;">
@@ -377,12 +377,18 @@ M834 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">�
   
   <nav class="post-nav">
     
-    <div class="post-nav-card post-nav-card--empty">
+    <a href="/post/talesona-wei-ni-liang-shen-ding-zhi-de-kai-yuan-ai-bo-ke-gong-zuo-liu/" class="post-nav-card post-nav-card--prev">
+      
+      <div class="post-nav-card__img">
+        <img src="/post-images/talesona-wei-ni-liang-shen-ding-zhi-de-kai-yuan-ai-bo-ke-gong-zuo-liu.webp" alt="TaleSona — 为你量身定制的开源 AI 播客工作流" loading="lazy" />
+      </div>
+      
       <div class="post-nav-card__body">
         <span class="post-nav-card__label meta-text">上一篇</span>
-        <span class="post-nav-card__empty-text">没有上一篇了~</span>
+        <span class="post-nav-card__title">TaleSona — 为你量身定制的开源 AI 播客工作流</span>
       </div>
-    </div>
+      <span class="post-nav-card__arrow">&larr;</span>
+    </a>
     
     
     <a href="/post/kai-yuan-jia-gou-agent-chronos-arch-die-dai-bi-jisanquan-ju-jie-kou-ceng-yu-lei-de-yin-ru/" class="post-nav-card post-nav-card--next">
